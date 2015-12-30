@@ -16,6 +16,7 @@ gulp.task('serve', ['css'], function() {
   });
 
   gulp.watch("./css/postcss/*.css", ['css']);
+  gulp.watch("./css/postcss/**/*.css", ['css']);
   gulp.watch("./js/*.js").on('change', browserSync.reload);
   gulp.watch("./*.html").on('change', browserSync.reload);
 });
