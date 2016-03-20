@@ -1,4 +1,5 @@
 var gulp = require('gulp');
+var rename = require('gulp-rename');
 var browserSync = require('browser-sync').create();
 var postcss = require('gulp-postcss');
 var autoprefixer = require('autoprefixer');
@@ -15,21 +16,24 @@ gulp.task('serve', ['css'], function() {
     }
   });
 
-  gulp.watch("./css/postcss/*.css", ['css']);
-  gulp.watch("./css/postcss/**/*.css", ['css']);
+  gulp.watch("./css/postcss/*.pcss", ['css']);
+  gulp.watch("./css/postcss/**/*.pcss", ['css']);
   gulp.watch("./js/*.js").on('change', browserSync.reload);
   gulp.watch("./*.html").on('change', browserSync.reload);
 });
 
 
 gulp.task('css', function () {
-  return gulp.src('./css/postcss/main.css')
+  return gulp.src('./css/postcss/main.pcss')
     .pipe(postcss([
       postcssImport(),
       precss,
       autoprefixer({browsers: ['last 1 version']}),
       mqpacker
     ]))
+    .pipe(rename({
+      extname: ".css"
+    }))
     .pipe(gulp.dest('./css'))
     .pipe(browserSync.stream());
 });

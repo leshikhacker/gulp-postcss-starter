@@ -21,6 +21,7 @@
     "css-mqpacker": "*",
     "csswring": "*",
     "gulp": "*",
+    "gulp-rename": "*",
     "gulp-postcss": "*",
     "postcss-import": "*",
     "precss": "*"
